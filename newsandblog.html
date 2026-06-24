@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>News & Blog | FAS & Associates</title>
+<link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --navy: #1d3557; --navy-dark: #152844; --gold: #c9a227; --gold-light: #d4b84a;
+    --white: #ffffff; --light-bg: #f5f7fa; --text-dark: #1d2d44;
+    --text-mid: #4a5568; --text-light: #718096; --border: #e2e8f0;
+  }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Raleway', Arial, sans-serif; color: var(--text-dark); line-height: 1.6; background: var(--white); }
+
+  header {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: var(--white); border-bottom: 1px solid var(--border);
+    padding: 0 48px; height: 72px; display: flex; align-items: center; justify-content: space-between;
+  }
+  nav { display: flex; align-items: center; gap: 8px; }
+  nav a {
+    font-size: 12px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase;
+    color: var(--navy); text-decoration: none; padding: 8px 16px; border-radius: 4px; transition: color 0.2s, background 0.2s;
+  }
+  nav a:hover { color: var(--gold); background: rgba(201,162,39,0.06); }
+  nav a.active { color: var(--gold); }
+  .nav-cta { margin-left: 8px; background: var(--navy) !important; color: var(--white) !important; padding: 10px 20px !important; border-radius: 4px; }
+  .nav-cta:hover { background: var(--navy-dark) !important; color: var(--white) !important; }
+
+  .page-hero {
+    margin-top: 72px; background: var(--navy); padding: 64px 48px; position: relative; overflow: hidden;
+  }
+  .page-hero::after { content: ''; position: absolute; right: 0; top: 0; bottom: 0; width: 6px; background: var(--gold); }
+  .page-hero-content { max-width: 1200px; margin: 0 auto; }
+  .page-eyebrow { font-size: 11px; font-weight: 600; letter-spacing: 3px; text-transform: uppercase; color: var(--gold); margin-bottom: 12px; }
+  .page-hero h1 { font-size: clamp(32px, 4vw, 48px); font-weight: 700; color: var(--white); }
+
+  .page-content { max-width: 900px; margin: 0 auto; padding: 72px 48px; }
+  .section-eyebrow { font-size: 11px; font-weight: 600; letter-spacing: 3px; text-transform: uppercase; color: var(--gold); margin-bottom: 8px; }
+  .gold-rule { width: 48px; height: 3px; background: var(--gold); margin: 16px 0 32px; }
+  .section-title { font-size: clamp(24px, 3vw, 36px); font-weight: 700; color: var(--navy); margin-bottom: 16px; }
+
+  .post-list { display: flex; flex-direction: column; gap: 40px; }
+
+  .post-card {
+    background: var(--white); border: 1px solid var(--border); border-radius: 8px;
+    overflow: hidden; transition: box-shadow 0.2s, transform 0.2s;
+  }
+  .post-card:hover { box-shadow: 0 8px 32px rgba(29,53,87,0.10); transform: translateY(-2px); }
+
+  .post-body { padding: 36px; }
+  .post-meta { display: flex; align-items: center; gap: 16px; margin-bottom: 16px; flex-wrap: wrap; }
+  .post-date { font-size: 12px; font-weight: 600; letter-spacing: 0.5px; color: var(--text-light); }
+  .post-author { font-size: 12px; color: var(--text-light); }
+  .post-read { font-size: 12px; color: var(--text-light); }
+  .post-meta-dot { width: 3px; height: 3px; border-radius: 50%; background: var(--border); }
+  .post-tag {
+    display: inline-block; font-size: 11px; font-weight: 600; letter-spacing: 0.5px;
+    background: rgba(29,53,87,0.07); color: var(--navy); padding: 3px 10px; border-radius: 4px;
+  }
+  .post-title { font-size: 22px; font-weight: 700; color: var(--navy); margin-bottom: 12px; line-height: 1.35; }
+  .post-excerpt { font-size: 15px; color: var(--text-mid); line-height: 1.75; margin-bottom: 24px; }
+  .post-content { font-size: 15px; color: var(--text-mid); line-height: 1.85; }
+  .post-content p { margin-bottom: 16px; }
+  .read-more {
+    display: inline-flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 600;
+    letter-spacing: 0.5px; color: var(--navy); text-decoration: none; transition: color 0.2s;
+  }
+  .read-more:hover { color: var(--gold); }
+  .read-more svg { width: 14px; height: 14px; }
+
+  footer {
+    background: var(--navy-dark); padding: 48px;
+    display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 24px;
+  }
+  footer p { font-size: 13px; color: rgba(255,255,255,0.4); }
+  .footer-links { display: flex; gap: 24px; }
+  .footer-links a { font-size: 12px; color: rgba(255,255,255,0.55); text-decoration: none; transition: color 0.2s; }
+  .footer-links a:hover { color: var(--gold); }
+
+  @media (max-width: 900px) {
+    header { padding: 0 24px; }
+    .page-hero { padding: 48px 24px; }
+    .page-content { padding: 48px 24px; }
+    footer { padding: 32px 24px; flex-direction: column; align-items: flex-start; }
+  }
+  @media (max-width: 640px) { nav { display: none; } }
+</style>
+</head>
+<body>
+
+<header>
+  <a href="index.html">
+    <img src="https://static.wixstatic.com/media/0f81bd_de011bd2cd4249a1909dae6ee08e4047~mv2.jpg/v1/crop/x_141,y_196,w_1075,h_502/fill/w_254,h_120,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/FAS_Logo%202019%20Horizontal1.jpg" alt="FAS & Associates" style="height:52px;width:auto;">
+  </a>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="principals.html">Principals</a>
+    <a href="team.html">Our Team</a>
+    <a href="newsandblog.html" class="active">News &amp; Blog</a>
+    <a href="contact.html" class="nav-cta">Contact Us</a>
+  </nav>
+</header>
+
+<div class="page-hero">
+  <div class="page-hero-content">
+    <p class="page-eyebrow">Industry Updates</p>
+    <h1>News &amp; Blog</h1>
+  </div>
+</div>
+
+<div class="page-content">
+  <p class="section-eyebrow">Latest Posts</p>
+  <div class="gold-rule"></div>
+
+  <div class="post-list">
+
+    <div class="post-card">
+      <div class="post-body">
+        <div class="post-meta">
+          <span class="post-date">February 27, 2021</span>
+          <span class="post-meta-dot"></span>
+          <span class="post-author">FAS &amp; Associates</span>
+          <span class="post-meta-dot"></span>
+          <span class="post-read">1 min read</span>
+          <span class="post-tag">Industry News</span>
+        </div>
+        <h2 class="post-title">Belden Takes Home Emmy® Award for Hybrid Electrical &amp; Fiber Camera Cable and Connectors</h2>
+        <p class="post-excerpt">Belden Inc. has joined the ranks of Emmy® Award recipients, recognized for innovation in hybrid electrical and fiber camera cable and connector technology - a product category central to modern broadcast infrastructure.</p>
+      </div>
+    </div>
+
+    <div class="post-card">
+      <div class="post-body">
+        <div class="post-meta">
+          <span class="post-date">January 23, 2016</span>
+          <span class="post-meta-dot"></span>
+          <span class="post-author">Jim Salvo</span>
+          <span class="post-meta-dot"></span>
+          <span class="post-read">13 min read</span>
+          <span class="post-tag">Case Study</span>
+        </div>
+        <h2 class="post-title">Planning, Partners and Products Enable Day-One Performance at Medical Center</h2>
+        <p class="post-excerpt">Originally published in the September 2014 issue of <em>Cabling Installation &amp; Maintenance Magazine</em>, this piece explores how the newly constructed MaineGeneral Medical Center achieved full operational readiness on opening day through strategic planning, the right partners, and carefully specified infrastructure products.</p>
+        <div class="post-content">
+          <p>When a new hospital opens its doors, there is no grace period - clinical systems, communications, and network infrastructure must perform flawlessly from minute one. The MaineGeneral Medical Center project demonstrates how early collaboration between owners, consultants, contractors, and manufacturers can eliminate day-one risk.</p>
+          <p>The project required meticulous coordination of structured cabling, fiber backbone, and communications systems across a complex clinical environment. Products from FAS &amp; Associates principals played a key role in meeting the project's demanding specifications.</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<footer>
+  <div>
+    <img src="https://static.wixstatic.com/media/0f81bd_de011bd2cd4249a1909dae6ee08e4047~mv2.jpg/v1/crop/x_141,y_196,w_1075,h_502/fill/w_254,h_120,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/FAS_Logo%202019%20Horizontal1.jpg" alt="FAS & Associates" style="height:44px;width:auto;filter:brightness(0) invert(1);">
+  </div>
+  <p>&copy; 2025 FAS &amp; Associates. Leominster, MA 01453</p>
+  <div class="footer-links">
+    <a href="index.html">Home</a>
+    <a href="principals.html">Principals</a>
+    <a href="team.html">Our Team</a>
+    <a href="newsandblog.html">News &amp; Blog</a>
+    <a href="contact.html">Contact</a>
+  </div>
+</footer>
+
+</body>
+</html>

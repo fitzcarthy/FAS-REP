@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Principals | FAS & Associates</title>
+<link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --navy: #1d3557; --navy-dark: #152844; --gold: #c9a227; --gold-light: #d4b84a;
+    --white: #ffffff; --light-bg: #f5f7fa; --text-dark: #1d2d44;
+    --text-mid: #4a5568; --text-light: #718096; --border: #e2e8f0;
+  }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Raleway', Arial, sans-serif; color: var(--text-dark); line-height: 1.6; background: var(--white); }
+
+  header {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: var(--white); border-bottom: 1px solid var(--border);
+    padding: 0 48px; height: 72px; display: flex; align-items: center; justify-content: space-between;
+  }
+  .logo { display: flex; align-items: center; gap: 14px; text-decoration: none; }
+  nav { display: flex; align-items: center; gap: 8px; }
+  nav a {
+    font-size: 12px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase;
+    color: var(--navy); text-decoration: none; padding: 8px 16px; border-radius: 4px; transition: color 0.2s, background 0.2s;
+  }
+  nav a:hover { color: var(--gold); background: rgba(201,162,39,0.06); }
+  nav a.active { color: var(--gold); }
+  .nav-cta { margin-left: 8px; background: var(--navy) !important; color: var(--white) !important; padding: 10px 20px !important; border-radius: 4px; }
+  .nav-cta:hover { background: var(--navy-dark) !important; color: var(--white) !important; }
+
+  .page-hero {
+    margin-top: 72px; background: var(--navy); padding: 64px 48px; position: relative; overflow: hidden;
+  }
+  .page-hero::after { content: ''; position: absolute; right: 0; top: 0; bottom: 0; width: 6px; background: var(--gold); }
+  .page-hero-content { max-width: 1200px; margin: 0 auto; }
+  .page-eyebrow { font-size: 11px; font-weight: 600; letter-spacing: 3px; text-transform: uppercase; color: var(--gold); margin-bottom: 12px; }
+  .page-hero h1 { font-size: clamp(32px, 4vw, 48px); font-weight: 700; color: var(--white); }
+
+  .page-content { max-width: 1200px; margin: 0 auto; padding: 72px 48px; }
+  .section-eyebrow { font-size: 11px; font-weight: 600; letter-spacing: 3px; text-transform: uppercase; color: var(--gold); margin-bottom: 8px; }
+  .gold-rule { width: 48px; height: 3px; background: var(--gold); margin: 16px 0 24px; }
+  .section-title { font-size: clamp(24px, 3vw, 36px); font-weight: 700; color: var(--navy); margin-bottom: 16px; }
+
+  .principals-grid {
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 28px; margin-top: 48px;
+  }
+  .principal-card {
+    background: var(--white); border: 1px solid var(--border); border-radius: 8px;
+    padding: 32px; display: flex; flex-direction: column; transition: box-shadow 0.2s, transform 0.2s;
+  }
+  .principal-card:hover { box-shadow: 0 8px 32px rgba(29,53,87,0.10); transform: translateY(-2px); }
+  .principal-logo {
+    height: 64px; display: flex; align-items: center; margin-bottom: 20px;
+  }
+  .principal-logo img { max-height: 56px; max-width: 180px; object-fit: contain; }
+  .principal-name { font-size: 18px; font-weight: 700; color: var(--navy); margin-bottom: 8px; }
+  .principal-desc { font-size: 14px; color: var(--text-mid); line-height: 1.75; margin-bottom: 16px; flex: 1; }
+  .principal-tag {
+    display: inline-block; font-size: 11px; font-weight: 600; letter-spacing: 0.5px;
+    background: rgba(29,53,87,0.07); color: var(--navy); padding: 4px 10px; border-radius: 4px; margin-bottom: 20px;
+  }
+  .principal-resources { border-top: 1px solid var(--border); padding-top: 16px; }
+  .principal-resources h5 { font-size: 11px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; color: var(--text-light); margin-bottom: 10px; }
+  .resource-link {
+    display: flex; align-items: center; gap: 8px; font-size: 13px; color: var(--navy);
+    text-decoration: none; padding: 5px 0; border-bottom: 1px solid var(--light-bg); transition: color 0.2s;
+  }
+  .resource-link:last-child { border-bottom: none; }
+  .resource-link:hover { color: var(--gold); }
+  .resource-link svg { width: 14px; height: 14px; fill: none; stroke: currentColor; stroke-width: 2; flex-shrink: 0; }
+
+  .line-card-banner {
+    background: var(--navy); border-radius: 8px; padding: 40px 48px;
+    display: flex; align-items: center; justify-content: space-between; gap: 24px;
+    margin-bottom: 56px; flex-wrap: wrap;
+  }
+  .line-card-banner h3 { font-size: 22px; font-weight: 700; color: var(--white); margin-bottom: 6px; }
+  .line-card-banner p { font-size: 14px; color: rgba(255,255,255,0.7); }
+  .btn-gold {
+    display: inline-flex; align-items: center; gap: 8px; background: var(--gold); color: var(--navy-dark);
+    font-size: 12px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase;
+    padding: 14px 28px; border-radius: 4px; text-decoration: none; white-space: nowrap; transition: background 0.2s;
+  }
+  .btn-gold:hover { background: var(--gold-light); }
+
+  footer {
+    background: var(--navy-dark); padding: 48px;
+    display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 24px;
+  }
+  footer p { font-size: 13px; color: rgba(255,255,255,0.4); }
+  .footer-links { display: flex; gap: 24px; }
+  .footer-links a { font-size: 12px; color: rgba(255,255,255,0.55); text-decoration: none; transition: color 0.2s; }
+  .footer-links a:hover { color: var(--gold); }
+
+  @media (max-width: 900px) {
+    header { padding: 0 24px; }
+    .page-hero { padding: 48px 24px; }
+    .page-content { padding: 48px 24px; }
+    .line-card-banner { padding: 32px 24px; }
+    footer { padding: 32px 24px; flex-direction: column; align-items: flex-start; }
+  }
+  @media (max-width: 640px) {
+    nav { display: none; }
+    .principals-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <a href="index.html" class="logo">
+    <img src="https://static.wixstatic.com/media/0f81bd_de011bd2cd4249a1909dae6ee08e4047~mv2.jpg/v1/crop/x_141,y_196,w_1075,h_502/fill/w_254,h_120,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/FAS_Logo%202019%20Horizontal1.jpg" alt="FAS & Associates" style="height:52px;width:auto;">
+  </a>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="principals.html" class="active">Principals</a>
+    <a href="team.html">Our Team</a>
+    <a href="newsandblog.html">News &amp; Blog</a>
+    <a href="contact.html" class="nav-cta">Contact Us</a>
+  </nav>
+</header>
+
+<div class="page-hero">
+  <div class="page-hero-content">
+    <p class="page-eyebrow">Our Manufacturers</p>
+    <h1>Principals</h1>
+  </div>
+</div>
+
+<div class="page-content">
+
+  <div class="line-card-banner">
+    <div>
+      <h3>Download Our Full Line Card</h3>
+      <p>A complete overview of all FAS &amp; Associates principals and product categories.</p>
+    </div>
+    <a href="https://www.fas-rep.com/_files/ugd/0f81bd_6e9e26df25b547648c10c18acb2c495f.pdf" target="_blank" class="btn-gold">
+      Download PDF
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+    </a>
+  </div>
+
+  <p class="section-eyebrow">Industry Leaders</p>
+  <div class="gold-rule"></div>
+  <h2 class="section-title">Our Manufacturing Partners</h2>
+  <p style="color:var(--text-mid);max-width:680px;margin-bottom:0;">We proudly represent a carefully selected portfolio of industry-leading manufacturers delivering innovative solutions across networking, communications, security, and power systems throughout New England.</p>
+
+  <div class="principals-grid">
+
+    <div class="principal-card">
+      <div class="principal-logo"><img src="https://static.wixstatic.com/media/0f81bd_1cbe91e0d5114dce849f9f3016dc3ade~mv2.jpg/v1/fill/w_414,h_134,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/Belden_Logo_Full-C_RGB.jpg" alt="Belden"></div>
+      <div class="principal-name">Belden</div>
+      <p class="principal-desc">World-class manufacturer of signal transmission products - copper and fiber cabling, rack and cabinet systems, coaxial cables, and enterprise connectivity solutions.</p>
+      <span class="principal-tag">Cabling &amp; Connectivity</span>
+      <div class="principal-resources">
+        <h5>Catalogs &amp; Resources</h5>
+        <a href="https://www.fas-rep.com" target="_blank" class="resource-link"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>Copper Catalog</a>
+        <a href="https://www.fas-rep.com" target="_blank" class="resource-link"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>Fiber Catalog</a>
+        <a href="https://www.fas-rep.com" target="_blank" class="resource-link"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>Rack &amp; Cabinet Systems Catalog</a>
+        <a href="https://www.fas-rep.com" target="_blank" class="resource-link"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>Fusion Splice on Connectors</a>
+        <a href="https://www.fas-rep.com" target="_blank" class="resource-link"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>FiberExpress Enterprise Closet</a>
+        <a href="https://www.fas-rep.com" target="_blank" class="resource-link"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>Low Loss ½" Coaxial Cables</a>
+        <a href="https://www.fas-rep.com" target="_blank" class="resource-link"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>Aisle Containment System</a>
+        <a href="https://www.fas-rep.com" target="_blank" class="resource-link"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>Smart Cabinet Access System</a>
+        <a href="https://www.fas-rep.com" target="_blank" class="resource-link"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>Product Launch: 10GXS Cables</a>
+        <a href="https://www.fas-rep.com" target="_blank" class="resource-link"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>REVConnect RJ45 Connectivity System</a>
+        <a href="https://www.fas-rep.com" target="_blank" class="resource-link"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>DNV GL Certified Category Cables</a>
+        <a href="https://www.fas-rep.com" target="_blank" class="resource-link"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>Quick Reference Belden/Mohawk Part Numbers</a>
+      </div>
+    </div>
+
+    <div class="principal-card">
+      <div class="principal-logo"><img src="https://static.wixstatic.com/media/0f81bd_2e405716101948639168c3148e7acb34~mv2.png/v1/crop/x_0,y_64,w_195,h_67/fill/w_195,h_67,al_c,q_85,enc_avif,quality_auto/fluke_networks_logo.png" alt="Fluke Networks"></div>
+      <div class="principal-name">Fluke Networks</div>
+      <p class="principal-desc">Installation, testing, documentation, and certification tools for copper and fiber cabling - including the CertiFiber™ Max platform for loss, length, and polarity.</p>
+      <span class="principal-tag">Network Testing</span>
+      <div class="principal-resources">
+        <h5>Catalogs &amp; Resources</h5>
+        <a href="https://www.fas-rep.com" target="_blank" class="resource-link"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>CertiFiber™ Max: Loss, Length &amp; Polarity</a>
+      </div>
+    </div>
+
+    <div class="principal-card">
+      <div class="principal-logo"><img src="https://static.wixstatic.com/media/0f81bd_b3169735a2b143edbceaca74b7645f45~mv2.jpg/v1/crop/x_0,y_0,w_185,h_183/fill/w_78,h_77,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/guardian-telecom-circa%20logo%20letter.jpg" alt="Guardian Telecom"></div>
+      <div class="principal-name">Guardian Telecom</div>
+      <p class="principal-desc">Ruggedized telephone endpoints, emergency communication systems, paging systems, and custom cables for industrial and mission-critical markets.</p>
+      <span class="principal-tag">Emergency Communications</span>
+      <div class="principal-resources">
+        <h5>Catalogs &amp; Resources</h5>
+        <a href="https://www.fas-rep.com" target="_blank" class="resource-link"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>OGP Range: Outdoor Call Help</a>
+        <a href="https://www.fas-rep.com" target="_blank" class="resource-link"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>Point Tower HDE-V Series: Emergency Telephones</a>
+      </div>
+    </div>
+
+    <div class="principal-card">
+      <div class="principal-logo"><img src="https://static.wixstatic.com/media/0f81bd_2730619039a147baae307dad9af78585~mv2.png/v1/fill/w_92,h_104,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/NetSource_Logo_Full.png" alt="NetSource"></div>
+      <div class="principal-name">NetSource, Inc.</div>
+      <p class="principal-desc">Custom copper and fiber optic cable assembly manufacturing with quick turnaround for harsh environment FTTA, DAS, and cell tower applications.</p>
+      <span class="principal-tag">Custom Cable Assembly</span>
+      <div class="principal-resources">
+        <h5>Catalogs &amp; Resources</h5>
+        <a href="https://www.fas-rep.com" target="_blank" class="resource-link"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>Harsh Environment Products for FTTA, DAS &amp; Cell Tower</a>
+      </div>
+    </div>
+
+    <div class="principal-card">
+      <div class="principal-logo"><img src="https://static.wixstatic.com/media/0f81bd_8c4a96e3f23c4757863b0bb8bcff631c~mv2.png/v1/fill/w_149,h_52,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/0f81bd_8c4a96e3f23c4757863b0bb8bcff631c~mv2.png" alt="Biamp"></div>
+      <div class="principal-name">Biamp / Cambridge Sound</div>
+      <p class="principal-desc">Sound masking systems for healthcare, corporate, conference room, and open office environments. Vocia voice communication systems for life safety.</p>
+      <span class="principal-tag">Sound Masking</span>
+      <div class="principal-resources">
+        <h5>Catalogs &amp; Resources</h5>
+        <a href="https://www.fas-rep.com" target="_blank" class="resource-link"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>Sound-Masking 101</a>
+        <a href="https://www.fas-rep.com" target="_blank" class="resource-link"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>Corporate Sound-Masking</a>
+        <a href="https://www.fas-rep.com" target="_blank" class="resource-link"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>Conference Room Sound-Masking</a>
+        <a href="https://www.fas-rep.com" target="_blank" class="resource-link"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>Healthcare Sound-Masking</a>
+        <a href="https://www.fas-rep.com" target="_blank" class="resource-link"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>Product List</a>
+      </div>
+    </div>
+
+    <div class="principal-card">
+      <div class="principal-logo"><img src="https://static.wixstatic.com/media/0f81bd_647645e309844729b72ab04092439201~mv2.png/v1/fill/w_249,h_37,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/0f81bd_647645e309844729b72ab04092439201~mv2.png" alt="Sumitomo Electric Lightwave"></div>
+      <div class="principal-name">Sumitomo Electric Lightwave</div>
+      <p class="principal-desc">Fiber optic fusion splicers, field installable connectivity solutions, and the Nanotune next-generation splicing platform.</p>
+      <span class="principal-tag">Fiber Optics</span>
+      <div class="principal-resources">
+        <h5>Catalogs &amp; Resources</h5>
+        <a href="https://www.fas-rep.com" target="_blank" class="resource-link"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>Fusion Splicer Solutions</a>
+        <a href="https://www.fas-rep.com" target="_blank" class="resource-link"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>Field Installable Solutions</a>
+        <a href="https://www.fas-rep.com" target="_blank" class="resource-link"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>Nanotune: Next Generation Splicing Solution</a>
+      </div>
+    </div>
+
+    <div class="principal-card">
+      <div class="principal-logo"><img src="https://static.wixstatic.com/media/0f81bd_7fb45bf56a2847fbb856e8fbaf48d44e~mv2.png/v1/fill/w_104,h_52,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/0f81bd_7fb45bf56a2847fbb856e8fbaf48d44e~mv2.png" alt="JMA Wireless"></div>
+      <div class="principal-name">JMA Wireless</div>
+      <p class="principal-desc">In-building and outdoor mobile wireless systems for LTE, 5G, and CBRS services featuring virtualized RAN platform technology.</p>
+      <span class="principal-tag">Wireless Solutions</span>
+      <div class="principal-resources">
+        <h5>Catalogs &amp; Resources</h5>
+        <a href="https://www.fas-rep.com" target="_blank" class="resource-link"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>JMA Solutions Overview</a>
+        <a href="https://www.fas-rep.com" target="_blank" class="resource-link"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>JMA Industry Solutions</a>
+        <a href="https://www.fas-rep.com" target="_blank" class="resource-link"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>Enterprise Solutions</a>
+      </div>
+    </div>
+
+    <div class="principal-card">
+      <div class="principal-logo"><img src="https://static.wixstatic.com/media/0f81bd_cf6177035fb348a9b9ecd855955a79c8~mv2.png/v1/crop/x_0,y_117,w_320,h_83/fill/w_222,h_52,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/0f81bd_cf6177035fb348a9b9ecd855955a79c8~mv2.png" alt="SureCall"></div>
+      <div class="principal-name">SureCall</div>
+      <p class="principal-desc">Multi-patent, award-winning cell phone signal boosters for homes, offices, vehicles, and commercial spaces - improving coverage and call quality in any environment.</p>
+      <span class="principal-tag">Signal Enhancement</span>
+    </div>
+
+    <div class="principal-card">
+      <div class="principal-logo"><img src="https://static.wixstatic.com/media/0f81bd_234ebba09adc46e1bf7b27d214db5da1.png/v1/crop/x_53,y_101,w_483,h_147/fill/w_200,h_61,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/mohawk.png" alt="Mohawk"></div>
+      <div class="principal-name">Mohawk</div>
+      <p class="principal-desc">Trusted cable brand for more than 50 years. Category 3-6A copper cabling products for government, education, healthcare, and security sectors.</p>
+      <span class="principal-tag">Copper Cabling</span>
+    </div>
+
+    <div class="principal-card">
+      <div class="principal-logo" style="align-items:center;">
+        <span style="font-size:22px;font-weight:700;color:var(--navy);">TierPoint</span>
+      </div>
+      <div class="principal-name">TierPoint</div>
+      <p class="principal-desc">Premier carrier-neutral data center services provider with 38 facilities across 24 U.S. markets. Colocation, cloud, and managed services.</p>
+      <span class="principal-tag">Data Center Services</span>
+    </div>
+
+    <div class="principal-card">
+      <div class="principal-logo" style="align-items:center;">
+        <span style="font-size:22px;font-weight:700;color:var(--navy);">Circa Max</span>
+      </div>
+      <div class="principal-name">Circa Max</div>
+      <p class="principal-desc">Manufactures surge protection equipment for the telecommunications industry - building entrance terminals, connectors, and protection devices.</p>
+      <span class="principal-tag">Surge Protection</span>
+    </div>
+
+  </div>
+</div>
+
+<footer>
+  <div>
+    <img src="https://static.wixstatic.com/media/0f81bd_de011bd2cd4249a1909dae6ee08e4047~mv2.jpg/v1/crop/x_141,y_196,w_1075,h_502/fill/w_254,h_120,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/FAS_Logo%202019%20Horizontal1.jpg" alt="FAS & Associates" style="height:44px;width:auto;filter:brightness(0) invert(1);">
+  </div>
+  <p>&copy; 2025 FAS &amp; Associates. Leominster, MA 01453</p>
+  <div class="footer-links">
+    <a href="index.html">Home</a>
+    <a href="principals.html">Principals</a>
+    <a href="team.html">Our Team</a>
+    <a href="newsandblog.html">News &amp; Blog</a>
+    <a href="contact.html">Contact</a>
+  </div>
+</footer>
+
+</body>
+</html>

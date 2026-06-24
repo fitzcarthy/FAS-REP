@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Our Team | FAS & Associates</title>
+<link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --navy: #1d3557; --navy-dark: #152844; --gold: #c9a227; --gold-light: #d4b84a;
+    --white: #ffffff; --light-bg: #f5f7fa; --text-dark: #1d2d44;
+    --text-mid: #4a5568; --text-light: #718096; --border: #e2e8f0;
+  }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Raleway', Arial, sans-serif; color: var(--text-dark); line-height: 1.6; background: var(--white); }
+
+  header {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: var(--white); border-bottom: 1px solid var(--border);
+    padding: 0 48px; height: 72px; display: flex; align-items: center; justify-content: space-between;
+  }
+  .logo { display: flex; align-items: center; gap: 14px; text-decoration: none; }
+  nav { display: flex; align-items: center; gap: 8px; }
+  nav a {
+    font-size: 12px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase;
+    color: var(--navy); text-decoration: none; padding: 8px 16px; border-radius: 4px; transition: color 0.2s, background 0.2s;
+  }
+  nav a:hover { color: var(--gold); background: rgba(201,162,39,0.06); }
+  nav a.active { color: var(--gold); }
+  .nav-cta {
+    margin-left: 8px; background: var(--navy) !important; color: var(--white) !important;
+    padding: 10px 20px !important; border-radius: 4px;
+  }
+  .nav-cta:hover { background: var(--navy-dark) !important; color: var(--white) !important; }
+
+  .page-hero {
+    margin-top: 72px; background: var(--navy); padding: 64px 48px;
+    position: relative; overflow: hidden;
+  }
+  .page-hero::after {
+    content: ''; position: absolute; right: 0; top: 0; bottom: 0; width: 6px; background: var(--gold);
+  }
+  .page-hero-content { max-width: 1200px; margin: 0 auto; }
+  .page-eyebrow {
+    font-size: 11px; font-weight: 600; letter-spacing: 3px; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 12px;
+  }
+  .page-hero h1 { font-size: clamp(32px, 4vw, 48px); font-weight: 700; color: var(--white); }
+
+  .page-content { max-width: 1200px; margin: 0 auto; padding: 72px 48px; }
+
+  .section-eyebrow {
+    font-size: 11px; font-weight: 600; letter-spacing: 3px; text-transform: uppercase; color: var(--gold); margin-bottom: 8px;
+  }
+  .gold-rule { width: 48px; height: 3px; background: var(--gold); margin: 16px 0 24px; }
+  .section-title { font-size: clamp(24px, 3vw, 36px); font-weight: 700; color: var(--navy); margin-bottom: 16px; }
+
+  .team-grid {
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 32px; margin-top: 48px;
+  }
+  .team-card {
+    background: var(--white); border: 1px solid var(--border); border-radius: 8px;
+    padding: 32px; transition: box-shadow 0.2s, transform 0.2s;
+  }
+  .team-card:hover { box-shadow: 0 8px 32px rgba(29,53,87,0.10); transform: translateY(-2px); }
+  .team-card-header { margin-bottom: 16px; }
+  .team-name { font-size: 20px; font-weight: 700; color: var(--navy); margin-bottom: 4px; }
+  .team-title {
+    font-size: 12px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 12px;
+  }
+  .team-region {
+    display: inline-block; font-size: 11px; font-weight: 600; letter-spacing: 0.5px;
+    background: var(--light-bg); color: var(--text-mid); padding: 4px 10px; border-radius: 4px; margin-bottom: 16px;
+  }
+  .team-bio { font-size: 14px; color: var(--text-mid); line-height: 1.75; margin-bottom: 20px; }
+  .team-contact { border-top: 1px solid var(--border); padding-top: 16px; }
+  .team-contact a {
+    display: block; font-size: 13px; color: var(--navy); text-decoration: none;
+    margin-bottom: 4px; transition: color 0.2s;
+  }
+  .team-contact a:hover { color: var(--gold); }
+
+  footer {
+    background: var(--navy-dark); padding: 48px;
+    display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 24px;
+  }
+  footer p { font-size: 13px; color: rgba(255,255,255,0.4); }
+  .footer-links { display: flex; gap: 24px; }
+  .footer-links a { font-size: 12px; color: rgba(255,255,255,0.55); text-decoration: none; transition: color 0.2s; }
+  .footer-links a:hover { color: var(--gold); }
+
+  @media (max-width: 900px) {
+    header { padding: 0 24px; }
+    .page-hero { padding: 48px 24px; }
+    .page-content { padding: 48px 24px; }
+    footer { padding: 32px 24px; flex-direction: column; align-items: flex-start; }
+  }
+  @media (max-width: 640px) {
+    nav { display: none; }
+    .team-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <a href="index.html" class="logo">
+    <img src="https://static.wixstatic.com/media/0f81bd_de011bd2cd4249a1909dae6ee08e4047~mv2.jpg/v1/crop/x_141,y_196,w_1075,h_502/fill/w_254,h_120,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/FAS_Logo%202019%20Horizontal1.jpg" alt="FAS & Associates" style="height:52px;width:auto;">
+  </a>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="principals.html">Principals</a>
+    <a href="team.html" class="active">Our Team</a>
+    <a href="newsandblog.html">News &amp; Blog</a>
+    <a href="contact.html" class="nav-cta">Contact Us</a>
+  </nav>
+</header>
+
+<div class="page-hero">
+  <div class="page-hero-content">
+    <p class="page-eyebrow">Who We Are</p>
+    <h1>Our Team</h1>
+  </div>
+</div>
+
+<div class="page-content">
+  <p class="section-eyebrow">The FAS Team</p>
+  <div class="gold-rule"></div>
+  <h2 class="section-title">Experienced. Connected. Dedicated.</h2>
+  <p style="color:var(--text-mid);max-width:680px;">Our team brings decades of combined experience in the wire, cable, and communications industry - with deep relationships across New England's healthcare, education, government, and enterprise markets.</p>
+
+  <div class="team-grid">
+
+    <div class="team-card">
+      <div class="team-card-header">
+        <div class="team-name">Brian Fitzpatrick</div>
+        <div class="team-title">President &amp; Strategic Accounts</div>
+        <span class="team-region">Central MA · Vermont · Rhode Island</span>
+      </div>
+      <p class="team-bio">Over 30 years in the wire and cable industry. Previously held sales positions at Phalo Corporation, Belden, and Mohawk Cable where he served as VP of Sales and Marketing.</p>
+      <div class="team-contact">
+        <a href="mailto:brianfitzpatrick@fas-rep.com">brianfitzpatrick@fas-rep.com</a>
+        <a href="tel:9786215287">m. 978.621.5287</a>
+        <a href="tel:9783869927">f. 978.386.9927</a>
+      </div>
+    </div>
+
+    <div class="team-card">
+      <div class="team-card-header">
+        <div class="team-name">Jim Salvo</div>
+        <div class="team-title">Vice President</div>
+        <span class="team-region">Eastern MA · Maine · New Hampshire</span>
+      </div>
+      <p class="team-bio">Over 16 years in communications. Held roles in purchasing, business management, marketing, and sales at Anixter. Previously District Sales Manager at Mohawk Cable.</p>
+      <div class="team-contact">
+        <a href="mailto:jimsalvo@fas-rep.com">jimsalvo@fas-rep.com</a>
+        <a href="tel:6034015261">m. 603.401.5261</a>
+        <a href="tel:6034581162">o. 603.458.1162</a>
+      </div>
+    </div>
+
+    <div class="team-card">
+      <div class="team-card-header">
+        <div class="team-name">Don Prescott</div>
+        <div class="team-title">Strategic Accounts &amp; Technical Liaison</div>
+        <span class="team-region">All New England</span>
+      </div>
+      <p class="team-bio">Over 36 years in the communications industry with Anixter, Vanderweil Engineers, Shooshanian Engineers, and Big East Marketing. Holds CCTT and CFNS certifications.</p>
+      <div class="team-contact">
+        <a href="mailto:donprescott@fas-rep.com">donprescott@fas-rep.com</a>
+        <a href="tel:5089272748">m. 508.927.2748</a>
+      </div>
+    </div>
+
+    <div class="team-card">
+      <div class="team-card-header">
+        <div class="team-name">Kevin Fitzpatrick</div>
+        <div class="team-title">Customer Service &amp; Marketing Specialist</div>
+        <span class="team-region">Vermont · General Customer Service</span>
+      </div>
+      <p class="team-bio">32 years at Mohawk Wire &amp; Cable with 26 years of operational scheduling experience. Extensive network cabling knowledge across product lines.</p>
+      <div class="team-contact">
+        <a href="mailto:kevinfitzpatrick@fas-rep.com">kevinfitzpatrick@fas-rep.com</a>
+        <a href="tel:9788750164">m. 978.875.0164</a>
+        <a href="tel:9785373764">f. 978.537.3764</a>
+      </div>
+    </div>
+
+    <div class="team-card">
+      <div class="team-card-header">
+        <div class="team-name">Paul Lillis</div>
+        <div class="team-title">Regional Sales Manager</div>
+        <span class="team-region">Connecticut · Western Massachusetts</span>
+      </div>
+      <p class="team-bio">Over 15 years in communications. Previously worked at Graybar Electric in customer service and sales roles across the region.</p>
+      <div class="team-contact">
+        <a href="mailto:paullillis@fas-rep.com">paullillis@fas-rep.com</a>
+        <a href="tel:2034999641">m. 203.499.9641</a>
+        <a href="tel:8662600653">f. 866.260.0653</a>
+      </div>
+    </div>
+
+    <div class="team-card">
+      <div class="team-card-header">
+        <div class="team-name">Anthony Salvo</div>
+        <div class="team-title">Business Development Manager</div>
+      </div>
+      <p class="team-bio">University of New Hampshire graduate focused on inside sales and business development. Brings fresh energy and a customer-first approach to growing client relationships.</p>
+      <div class="team-contact">
+        <a href="mailto:anthonysalvo@fas-rep.com">anthonysalvo@fas-rep.com</a>
+        <a href="tel:6034018512">m. 603.401.8512</a>
+        <a href="tel:6034581163">f. 603.458.1163</a>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<footer>
+  <div>
+    <img src="https://static.wixstatic.com/media/0f81bd_de011bd2cd4249a1909dae6ee08e4047~mv2.jpg/v1/crop/x_141,y_196,w_1075,h_502/fill/w_254,h_120,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/FAS_Logo%202019%20Horizontal1.jpg" alt="FAS & Associates" style="height:44px;width:auto;filter:brightness(0) invert(1);">
+  </div>
+  <p>&copy; 2025 FAS &amp; Associates. Leominster, MA 01453</p>
+  <div class="footer-links">
+    <a href="index.html">Home</a>
+    <a href="principals.html">Principals</a>
+    <a href="team.html">Our Team</a>
+    <a href="newsandblog.html">News &amp; Blog</a>
+    <a href="contact.html">Contact</a>
+  </div>
+</footer>
+
+</body>
+</html>
